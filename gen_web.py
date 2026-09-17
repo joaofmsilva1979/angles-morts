@@ -468,7 +468,7 @@ def build_hub() -> str:
 <!-- HERO -->
 <section class="hero">
   <div>
-    <div class="hero-label">Auteur · Praticien · Éditorialiste</div>
+    <div class="hero-label">Marque · Marketing · Nouvelles technologies · Curiosités</div>
     <h1 class="hero-title">Ce qu'on ne voit pas,<br>même quand on <em>regarde</em>.</h1>
     <p class="hero-desc">Des séries longues sur la marque, le marketing et la gouvernance de ce qu'on représente. Pas des conseils génériques. Des questions qui font un peu mal.</p>
     <div class="hero-actions">
@@ -478,7 +478,7 @@ def build_hub() -> str:
   </div>
   <div class="hero-photo-wrap">
     <img src="joao.png" alt="João Silva" class="hero-photo">
-    <p class="hero-photo-caption">Auteur · Praticien · Luxembourg</p>
+    <p class="hero-photo-caption">Éternel curieux</p>
   </div>
 </section>
 
@@ -508,7 +508,7 @@ def build_hub() -> str:
   <div class="about-inner">
     <div>
       <h2 class="about-heading">João Silva</h2>
-      <p class="about-text">Marketing &amp; digital au CIGL Esch, Luxembourg. J'écris depuis l'intérieur d'une organisation — pas depuis un cabinet conseil.<br><br>La question n'est pas <em>comment tu communiques</em>. Elle est <em>qui décide, qui fait vivre, qui répond quand ça craque.</em></p>
+      <p class="about-text">Marketing &amp; digital au CIGL Esch, Luxembourg. J'écris depuis l'intérieur d'une organisation ; pas depuis un cabinet conseil.<br><br>La question n'est pas <em>comment tu communiques</em>. Elle est <em>qui décide, qui fait vivre, qui répond quand ça craque.</em></p>
       <div class="about-links">
         <a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener" class="about-link">Substack</a>
         <a href="https://www.linkedin.com/in/jo%C3%A3o-silva-b3b86232/" target="_blank" rel="noopener" class="about-link">LinkedIn</a>
