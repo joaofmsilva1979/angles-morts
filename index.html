@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Angles Morts — João Silva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bx:#8B1A1A;
+  --bx2:#B8432F;
+  --gray:#6B6B6B;
+  --gray2:#9A9A9A;
+  --ink:#1A1A1A;
+  --bg:#FAFAF8;
+  --rule:#E5E5E0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+body{font-size:17px;line-height:1.7}
+.site-header{
+  max-width:860px;margin:0 auto;
+  padding:72px 40px 0;
+}
+.brand{display:flex;align-items:baseline;gap:16px;margin-bottom:32px}
+.brand-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:48px;font-weight:500;
+  color:var(--ink);letter-spacing:-.02em;
+}
+.brand-by{
+  font-size:14px;color:var(--gray2);
+  letter-spacing:.04em;
+}
+.brand-tagline{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:20px;
+  color:var(--gray);line-height:1.4;
+  max-width:540px;margin-bottom:60px;
+}
+.rule{border:none;border-top:1px solid var(--rule);margin:0 0 64px}
+/* ── articles list ── */
+.articles{max-width:860px;margin:0 auto;padding:0 40px}
+.section-label{
+  font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bx);font-weight:600;margin-bottom:32px;
+}
+.article-list{display:flex;flex-direction:column;gap:0}
+/* ── article card ── */
+.article-card{
+  display:grid;
+  grid-template-columns:80px 1fr auto;
+  gap:0 32px;
+  align-items:start;
+  padding:32px 0;
+  border-bottom:1px solid var(--rule);
+  cursor:default;
+  transition:background .15s;
+  text-decoration:none;
+  color:inherit;
+}
+.article-card:first-child{border-top:1px solid var(--rule)}
+.article-card:hover .card-title{color:var(--bx)}
+.card-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;font-weight:400;
+  color:var(--rule);line-height:1;
+  letter-spacing:-.02em;
+  padding-top:4px;
+}
+.card-body{min-width:0}
+.card-meta{
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--gray2);margin-bottom:8px;
+}
+.card-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:500;
+  line-height:1.2;color:var(--ink);
+  margin-bottom:10px;
+  transition:color .15s;
+}
+.card-desc{font-size:15px;color:var(--gray);line-height:1.6;max-width:520px}
+.card-status{
+  align-self:center;
+  white-space:nowrap;
+}
+.badge{
+  display:inline-block;
+  font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+  font-weight:600;padding:5px 12px;border-radius:2px;
+}
+.badge-live{background:rgba(139,26,26,.08);color:var(--bx)}
+.badge-soon{background:#F0F0EC;color:var(--gray2)}
+.card-arrow{
+  font-size:20px;color:var(--bx);opacity:0;
+  transition:opacity .15s,transform .15s;
+  align-self:center;margin-left:12px;
+}
+.article-card:hover .card-arrow{opacity:1;transform:translateX(4px)}
+/* ── coming soon card ── */
+.article-card.soon{cursor:default}
+.article-card.soon:hover .card-title{color:inherit}
+/* ── about ── */
+.about{
+  max-width:860px;margin:80px auto 0;
+  padding:60px 40px;
+  border-top:1px solid var(--rule);
+  display:grid;grid-template-columns:1fr 1fr;gap:48px;
+}
+.about-heading{
+  font-family:'Cormorant Garamond',serif;
+  font-size:28px;font-weight:500;margin-bottom:16px;
+}
+.about-text{font-size:15px;color:var(--gray);line-height:1.7}
+.about-links{display:flex;flex-direction:column;gap:10px;margin-top:24px}
+.about-link{
+  display:flex;align-items:center;gap:10px;
+  font-size:14px;color:var(--bx);
+  text-decoration:none;font-weight:500;
+}
+.about-link::after{content:'→';font-size:12px}
+.about-link:hover{text-decoration:underline}
+/* ── footer ── */
+footer{
+  max-width:860px;margin:0 auto;
+  padding:40px 40px 64px;
+  font-size:13px;color:var(--gray2);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+  border-top:1px solid var(--rule);
+  margin-top:80px;
+}
+footer a{color:var(--bx)}
+footer a:hover{text-decoration:underline}
+@media(max-width:700px){
+  .site-header,.articles{padding:48px 24px 0}
+  .article-card{grid-template-columns:48px 1fr;gap:0 16px}
+  .card-status{display:none}
+  .card-num{font-size:36px}
+  .about{grid-template-columns:1fr;padding:48px 24px}
+  footer{padding:32px 24px 48px}
+  .brand-name{font-size:36px}
+}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="brand">
+    <span class="brand-name">Angles Morts</span>
+    <span class="brand-by">par João Silva</span>
+  </div>
+  <p class="brand-tagline">Ce qu'on ne voit pas, même quand on regarde — et ce que ça coûte de ne pas le voir.</p>
+  <hr class="rule">
+</header>
+
+<section class="articles">
+  <div class="section-label">Séries &amp; articles</div>
+  <div class="article-list">
+    
+<a href="marque.html" class="article-card">
+  <div class="card-num">13</div>
+  <div class="card-body">
+    <div class="card-meta">Série · 13 chapitres</div>
+    <div class="card-title">Construire une marque qui tient</div>
+    <div class="card-desc">Du pourquoi une marque à la gestion d'une crise de réputation : treize questions pour piloter ce que vous représentez — pas juste le communiquer.</div>
+  </div>
+  <div class="card-status">
+    <span class="badge badge-live">Disponible</span>
+    <span class="card-arrow">→</span>
+  </div>
+</a>
+<div class="article-card soon">
+  <div class="card-num">—</div>
+  <div class="card-body">
+    <div class="card-meta">Article · À venir</div>
+    <div class="card-title">Du modèle 4P aux 10P : pourquoi les confondre coûte cher</div>
+    <div class="card-desc">McCarthy, Booms &amp; Bitner, Godin. Trois moments, trois extensions différentes du marketing mix. Ce qu'on y mélange dit beaucoup sur ce qu'on ne comprend pas encore.</div>
+  </div>
+  <div class="card-status">
+    <span class="badge badge-soon">Bientôt</span>
+    
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="about">
+  <div>
+    <h2 class="about-heading">João Silva</h2>
+    <p class="about-text">Praticien qui théorise. Service marketing &amp; digital au CIGL Esch (Luxembourg). Master 2 avec Aaker, Kapferer, Coombs réellement étudiés — pas cités pour légitimer une facture.<br><br>La question n'est pas <em>comment tu communiques</em>. Elle est <em>qui décide de ton identité, qui la fait vivre, qui répond quand elle craque.</em></p>
+    <div class="about-links">
+      <a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener" class="about-link">Substack</a>
+      <a href="https://linkedin.com/in/joaosilva1979" target="_blank" rel="noopener" class="about-link">LinkedIn</a>
+    </div>
+  </div>
+  <div>
+    <h2 class="about-heading">Le projet</h2>
+    <p class="about-text">Angles Morts, c'est le nom de la newsletter. Un angle mort, ce n'est pas ce qu'on fait mal. C'est ce qu'on ne voit pas, même quand on est concentré, même quand on fait correctement son travail.<br><br>Chaque article part d'une question qu'on évite souvent — parce qu'elle oblige à répondre.</p>
+  </div>
+</section>
+
+<footer>
+  <span>© João Silva</span>
+  <span><a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener">joaosilva1979.substack.com</a></span>
+</footer>
+
+</body>
+</html>
