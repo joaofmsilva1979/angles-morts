@@ -21,7 +21,7 @@ GRAY = "#6B6B6B"
 
 FONTS = """<link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">"""
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">"""
 
 BASE_CSS = """
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
@@ -246,12 +246,12 @@ body{font-size:16px;line-height:1.65;background:var(--cream)}
   color:var(--bx);margin-bottom:20px;
 }
 .hero-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:64px;font-weight:500;line-height:1.05;
-  color:var(--ink);letter-spacing:-.03em;
+  font-family:'Playfair Display',serif;
+  font-size:62px;font-weight:700;line-height:1.05;
+  color:var(--ink);letter-spacing:-.02em;
   margin-bottom:20px;
 }
-.hero-title em{font-style:normal;color:var(--bx)}
+.hero-title em{font-style:italic;color:var(--bx)}
 .hero-desc{
   font-size:17px;color:#444;line-height:1.7;
   max-width:500px;margin-bottom:32px;
@@ -273,19 +273,9 @@ body{font-size:16px;line-height:1.65;background:var(--cream)}
 .btn-secondary:hover{color:var(--bx)}
 /* ── PHOTO ── */
 .hero-photo-wrap{
-  position:relative;
   width:280px;justify-self:center;
 }
-.hero-photo-frame{
-  position:absolute;
-  top:14px;left:14px;
-  width:100%;height:100%;
-  border:3px solid var(--bx);
-  border-radius:6px;
-  z-index:0;
-}
 .hero-photo{
-  position:relative;z-index:1;
   width:100%;aspect-ratio:1;
   object-fit:cover;object-position:center top;
   border-radius:6px;
@@ -312,9 +302,9 @@ body{font-size:16px;line-height:1.65;background:var(--cream)}
   color:var(--bx);margin-bottom:14px;
 }
 .feat-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:44px;font-weight:500;color:#fff;
-  line-height:1.1;margin-bottom:12px;letter-spacing:-.02em;
+  font-family:'Playfair Display',serif;
+  font-size:42px;font-weight:700;color:#fff;
+  line-height:1.1;margin-bottom:12px;letter-spacing:-.01em;
 }
 .feat-desc{font-size:15px;color:rgba(255,255,255,.55);line-height:1.6;max-width:460px;margin-bottom:24px}
 .feat-cta{
@@ -350,8 +340,8 @@ body{font-size:16px;line-height:1.65;background:var(--cream)}
 .article-card.soon{cursor:default}
 .card-meta{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--gray2);margin-bottom:6px}
 .card-title{
-  font-family:'Cormorant Garamond',serif;
-  font-size:24px;font-weight:500;color:var(--ink);
+  font-family:'Playfair Display',serif;
+  font-size:22px;font-weight:600;color:var(--ink);
   line-height:1.2;margin-bottom:6px;
   transition:color .15s;
 }
@@ -487,7 +477,6 @@ def build_hub() -> str:
     </div>
   </div>
   <div class="hero-photo-wrap">
-    <div class="hero-photo-frame"></div>
     <img src="joao.png" alt="João Silva" class="hero-photo">
     <p class="hero-photo-caption">Auteur · Praticien · Luxembourg</p>
   </div>
