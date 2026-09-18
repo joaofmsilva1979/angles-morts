@@ -9,7 +9,7 @@ from pathlib import Path
 from html import escape
 
 SRC = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/LinkedIn/SEMAINE/Construire-une-marque-qui-tient/TOUT/construire-une-marque-qui-tient-COMPLET.md"
-SRC_4P    = Path(__file__).parent / "4p-COMPLET.md"
+SRC_4P    = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/angles-morts-web/4p-COMPLET.md"
 OUT_HUB   = Path(__file__).parent / "index.html"
 OUT_GUIDE = Path(__file__).parent / "marque.html"
 OUT_4P    = Path(__file__).parent / "4p.html"
