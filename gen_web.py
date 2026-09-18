@@ -12,7 +12,7 @@ SRC = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My D
 SRC_4P    = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/angles-morts-web/4p-COMPLET.md"
 OUT_HUB   = Path(__file__).parent / "index.html"
 OUT_GUIDE = Path(__file__).parent / "marque.html"
-OUT_4P    = Path(__file__).parent / "4p.html"
+OUT_4P    = Path(__file__).parent / "mix-marketing.html"
 
 BORDEAUX = "#8B1A1A"
 GRAY = "#6B6B6B"
@@ -47,6 +47,7 @@ a{color:inherit;text-decoration:none}
 
 def inline_md(text: str) -> str:
     text = escape(text)
+    text = re.sub(r'\s*—\s*', ' ; ', text)
     text = re.sub(r'\*\*\*(.+?)\*\*\*', r'<strong><em>\1</em></strong>', text)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
     text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
@@ -422,7 +423,7 @@ def build_hub() -> str:
             'meta': 'Article · Essai',
             'title': 'Du 4P au 10P : un cadre ne donne pas de sens',
             'desc': 'McCarthy, Booms &amp; Bitner, Godin. Soixante ans d\'additions. Et si le problème n\'était pas le nombre de P, mais ce qu\'un cadre ne peut pas faire à ta place ?',
-            'url': '4p.html',
+            'url': 'mix-marketing.html',
             'status': 'live',
             'label': 'Disponible',
         },
@@ -953,14 +954,25 @@ def build_4p(src: Path) -> str:
   font-family:'Cormorant Garamond',serif;
   font-size:22px;font-style:italic;line-height:1.55;
   color:var(--bx);border-left:3px solid var(--bx);
-  padding:12px 24px;margin:40px 0 56px;
+  padding:12px 24px;margin:40px 0 64px;
 }}
-.section-block{{margin-bottom:72px}}
+.section-block{{margin-bottom:104px}}
 .section-block h2{{
   font-family:'Playfair Display',serif;
   font-size:32px;font-weight:700;line-height:1.2;
-  color:var(--ink);margin:0 0 28px;
+  color:var(--ink);margin:0 0 36px;
   padding-bottom:16px;border-bottom:1px solid var(--rule);
+}}
+.section-block p{{margin-bottom:28px;color:#2A2A2A;line-height:1.85}}
+.section-block p:last-child{{margin-bottom:0}}
+.section-block ul,.section-block ol{{padding-left:24px;margin:0 0 28px}}
+.section-block li{{margin-bottom:10px;line-height:1.7}}
+.section-block .pull{{
+  border-left:2px solid var(--bx);
+  padding:6px 0 6px 22px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-style:italic;color:var(--gray);
+  margin:36px 0;line-height:1.5;
 }}
 </style>
 </head>
