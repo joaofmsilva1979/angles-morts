@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Du 4P au 10P : un cadre ne donne pas de sens — João Silva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bx:#8B1A1A;
+  --bx2:#B8432F;
+  --gray:#6B6B6B;
+  --gray2:#9A9A9A;
+  --ink:#1A1A1A;
+  --bg:#FAFAF8;
+  --rule:#E5E5E0;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--ink);background:var(--bg)}
+a{color:inherit;text-decoration:none}
+
+body{font-size:18px;line-height:1.78}
+/* ── top bar ── */
+.topbar{
+  position:fixed;top:0;left:0;right:0;
+  height:52px;background:rgba(250,250,248,.95);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid var(--rule);
+  display:flex;align-items:center;
+  padding:0 36px;gap:24px;
+  z-index:200;
+}
+.topbar-home{
+  font-size:13px;font-weight:500;color:var(--gray);
+  display:flex;align-items:center;gap:6px;
+}
+.topbar-home::before{content:'←';font-size:11px}
+.topbar-home:hover{color:var(--bx)}
+.topbar-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:17px;font-weight:500;color:var(--ink);
+}
+/* ── layout ── */
+.layout{display:grid;grid-template-columns:220px 1fr;min-height:100vh;margin-top:52px}
+/* ── sidebar ── */
+nav#sidebar{
+  position:fixed;top:52px;left:0;
+  width:220px;height:calc(100vh - 52px);
+  overflow-y:auto;
+  background:#fff;
+  border-right:1px solid var(--rule);
+  padding:32px 0 60px;
+}
+nav#sidebar::-webkit-scrollbar{width:2px}
+nav#sidebar::-webkit-scrollbar-thumb{background:#D8D8D4}
+.sidebar-section{
+  padding:20px 22px 6px;
+  font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+  color:#C0C0BC;font-weight:600;
+}
+.sidebar-intro{
+  display:block;padding:7px 22px;
+  font-size:13px;color:var(--gray);
+  transition:color .15s;
+}
+.sidebar-intro:hover{color:var(--bx)}
+a.cl{
+  display:flex;align-items:baseline;gap:8px;
+  padding:6px 22px;font-size:13px;line-height:1.4;
+  color:var(--gray);
+  border-left:2px solid transparent;
+  margin-left:-1px;
+  transition:color .15s,border-color .15s;
+}
+a.cl:hover,a.cl.active{color:var(--bx);border-left-color:var(--bx);background:linear-gradient(90deg,rgba(139,26,26,.04),transparent)}
+a.cl .n{
+  font-family:'Cormorant Garamond',serif;
+  font-size:14px;font-weight:500;
+  color:var(--bx);opacity:.5;flex-shrink:0;min-width:20px;
+}
+a.cl.active .n{opacity:1}
+/* ── main ── */
+main{
+  grid-column:2;
+  padding:80px 80px 140px 72px;
+}
+.content{max-width:800px}
+/* ── hero ── */
+.guide-hero{margin-bottom:64px}
+.back-label{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--bx);font-weight:600;margin-bottom:28px;
+}
+.back-label::before{content:'←';font-size:10px}
+.guide-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:76px;font-weight:500;line-height:1.0;
+  color:var(--ink);margin-bottom:16px;
+  letter-spacing:-.03em;
+}
+.guide-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;font-size:26px;
+  color:var(--gray);margin-bottom:10px;
+}
+.guide-author{
+  font-size:14px;color:var(--gray2);
+  display:flex;align-items:center;gap:12px;margin-bottom:0;
+}
+.guide-author::after{content:'';flex:1;height:1px;background:var(--rule)}
+/* ── intro ── */
+.intro-block{font-size:17px;line-height:1.82;color:#333;margin-bottom:0}
+.intro-block p+p{margin-top:20px}
+/* ── chapter ── */
+.chapter{padding-top:96px;border-top:1px solid var(--rule);margin-top:88px}
+.chapter:first-of-type{border-top:none;margin-top:0;padding-top:72px}
+.ch-num{
+  font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--bx);font-weight:600;margin-bottom:10px;
+}
+.ch-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:52px;font-weight:500;line-height:1.1;
+  color:var(--ink);margin-bottom:24px;letter-spacing:-.02em;
+}
+.tl{
+  border-left:2px solid var(--bx);padding:6px 0 6px 22px;
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-style:italic;color:var(--gray);
+  margin-bottom:44px;line-height:1.5;
+}
+/* ── body ── */
+.ch-body h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;color:var(--ink);
+  margin-top:44px;margin-bottom:14px;line-height:1.25;
+}
+.ch-body p{margin-bottom:20px;color:#2A2A2A}
+.ch-body p:last-child{margin-bottom:0}
+.ch-body strong{font-weight:600;color:var(--ink)}
+.ch-body em{font-style:italic}
+.ch-body ul,.ch-body ol{padding-left:24px;margin-bottom:20px}
+.ch-body li{margin-bottom:8px}
+.ch-body a{color:var(--bx);text-decoration:underline;text-underline-offset:2px}
+/* ── 4 questions ── */
+.qbox{
+  background:#fff;border:1px solid var(--rule);
+  border-top:3px solid var(--bx);border-radius:2px;
+  padding:32px 36px;margin-top:48px;
+}
+.qbox h3{
+  font-size:12px!important;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--bx)!important;font-weight:600;
+  margin-top:0!important;margin-bottom:18px!important;
+}
+.qbox ol{padding-left:22px;margin-bottom:0}
+.qbox li{font-size:16px;color:#333;line-height:1.65;margin-bottom:12px}
+/* ── conclusion / resources ── */
+.conclusion{
+  margin-top:96px;padding:60px;
+  background:#fff;border:1px solid var(--rule);border-radius:2px;
+}
+.conclusion h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:40px;font-weight:500;color:var(--ink);margin-bottom:28px;
+}
+.conclusion h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:26px;font-weight:600;margin-top:32px;margin-bottom:14px;
+}
+.conclusion p{margin-bottom:18px;color:#2A2A2A}
+.conclusion a{color:var(--bx);text-decoration:underline;text-underline-offset:2px}
+.resources{margin-top:96px}
+.resources h2{
+  font-family:'Cormorant Garamond',serif;
+  font-size:32px;font-weight:500;margin-bottom:28px;
+}
+.resources h3{
+  font-size:12px!important;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--bx)!important;font-weight:600;
+  margin-top:32px!important;margin-bottom:12px!important;
+}
+.resources ul{padding-left:22px;margin-bottom:14px}
+.resources li{font-size:15px;color:#444;margin-bottom:6px;line-height:1.6}
+.resources a{color:var(--bx);text-decoration:none}
+.resources a:hover{text-decoration:underline}
+/* ── footer ── */
+footer{
+  margin-top:120px;padding-top:36px;border-top:1px solid var(--rule);
+  font-size:13px;color:var(--gray2);
+  display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;
+}
+footer a{color:var(--bx)}
+footer a:hover{text-decoration:underline}
+/* ── responsive ── */
+@media(max-width:960px){
+  .layout{grid-template-columns:1fr}
+  nav#sidebar{display:none}
+  main{padding:40px 28px 80px;max-width:100%}
+  .guide-title{font-size:48px}
+  .ch-title{font-size:38px}
+  .topbar{padding:0 20px}
+}
+
+.opening-quote{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-style:italic;line-height:1.55;
+  color:var(--bx);border-left:3px solid var(--bx);
+  padding:12px 24px;margin:40px 0 56px;
+}
+.section-block{margin-bottom:72px}
+.section-block h2{
+  font-family:'Playfair Display',serif;
+  font-size:32px;font-weight:700;line-height:1.2;
+  color:var(--ink);margin:0 0 28px;
+  padding-bottom:16px;border-bottom:1px solid var(--rule);
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-home">Angles Morts</a>
+  <span class="topbar-title">Du 4P au 10P : un cadre ne donne pas de sens</span>
+</div>
+
+<div class="layout">
+<nav id="sidebar"><div class="sidebar-section">Article</div><a href="#1960-un-mod-le-na-t-utile-limit-et-d-j-partiel" class="cl"><span>1960 : un modèle naît. Utile. Limité. Et déjà partiel.</span></a><a href="#la-machine-p" class="cl"><span>La machine à P</span></a><a href="#ce-qu-un-cadre-ne-peut-pas-faire" class="cl"><span>Ce qu'un cadre ne peut pas faire</span></a><a href="#ceux-qui-r-ussissaient-sans-le-savoir" class="cl"><span>Ceux qui réussissaient sans le savoir</span></a><a href="#just-do-it-les-origines" class="cl"><span>"Just Do It" — les origines</span></a><a href="#le-cadre-une-carte-pas-un-gps" class="cl"><span>Le cadre : une carte, pas un GPS</span></a><a href="#prends-le-puis-va-au-del" class="cl"><span>Prends-le. Puis va au-delà.</span></a><a href="#sources" class="sidebar-intro">Sources</a></nav>
+<main>
+<div class="content">
+
+<div class="guide-hero">
+  <a href="index.html" class="back-label">Angles Morts</a>
+  <h1 class="guide-title">Du 4P au 10P : un cadre ne donne pas de sens</h1>
+  <p class="guide-meta">João Silva — Angles Morts</p>
+</div>
+<div class="opening-quote">Les mots les plus influents du marketing n&#x27;ont pas été écrits par un professeur. Ils ont été prononcés par un condamné à mort.</div>
+<section class="section-block" id="1960-un-mod-le-na-t-utile-limit-et-d-j-partiel"><h2>1960 : un modèle naît. Utile. Limité. Et déjà partiel.</h2><p>E. Jerome McCarthy publie <em>Basic Marketing</em> en 1960. Il propose un cadre pour organiser la politique commerciale d&#x27;une entreprise : Product, Price, Place, Promotion. Les 4P.</p>
+<p>C&#x27;est utile. C&#x27;est simple. C&#x27;est pédagogique. Et c&#x27;est construit pour l&#x27;économie industrielle américaine des années 60 : des usines, des réseaux de distribution physiques, de la publicité télévisée de masse.</p>
+<p>Ce n&#x27;est pas une vérité universelle. McCarthy lui-même ne le prétend pas. C&#x27;est une carte. Pas le territoire.</p>
+<p>Soixante ans plus tard, ses héritiers s&#x27;en souviennent mal.</p></section>
+<section class="section-block" id="la-machine-p"><h2>La machine à P</h2><p>En 1981, Bernard Booms et Mary Bitner remarquent que les 4P ne couvrent pas les services. Ils en ajoutent trois : People (les personnes), Process (le processus de délivrance), Physical evidence (la preuve tangible). 7P.</p>
+<p>Depuis, chacun y va de ses propres additions :</p>
+<ul>
+<li>5P avec l&#x27;expérience client</li>
+<li>8P avec le partenariat</li>
+<li>9P avec la <em>purpose</em></li>
+<li>10P avec la Purple Cow (Seth Godin), Permission (Seth Godin encore), Partnership...</li>
+</ul>
+<p>Problème : ils n&#x27;ajoutent pas les mêmes P.</p>
+<p>Un document de formation CCI enseigne les 5P avec &quot;expérience client&quot; comme cinquième. Des manuels de Master 2 enseignent les 7P. Des blogs de conseil enseignent les 10P. Des consultants facturent pour expliquer la différence.</p>
+<p>Quand tout le monde ajoute des P différents, c&#x27;est rarement le signe que le modèle est riche. C&#x27;est le signe qu&#x27;il ne couvre pas ce qu&#x27;on cherche à couvrir.</p></section>
+<section class="section-block" id="ce-qu-un-cadre-ne-peut-pas-faire"><h2>Ce qu&#x27;un cadre ne peut pas faire</h2><p>Un cadre dit COMMENT organiser. Pas POURQUOI on est choisi.</p>
+<p>Apple n&#x27;est pas devenu Apple parce qu&#x27;elle avait un meilleur &quot;Place&quot;. Zara n&#x27;a pas révolutionné le prêt-à-porter avec une &quot;Promotion&quot; mieux calibrée. Le Slip Français n&#x27;existe pas grâce à un &quot;Product&quot; supérieur techniquement.</p>
+<p>Ces marques ont pris des décisions. Des décisions difficiles, non consensuelles, souvent contre l&#x27;avis du modèle. Elles ont choisi de qui elles ne voulaient pas. Elles ont refusé des distributions qui auraient &quot;optimisé&quot; leur Place. Elles ont dit non à des prix qui auraient &quot;maximisé&quot; leur volume.</p>
+<p>Les P ne prennent pas ces décisions. Ils les décrivent après coup.</p>
+<p>Et c&#x27;est là le problème : on enseigne les P comme si les avoir bien remplis produisait les décisions. Ça ne marche pas dans ce sens.</p></section>
+<section class="section-block" id="ceux-qui-r-ussissaient-sans-le-savoir"><h2>Ceux qui réussissaient sans le savoir</h2><p>Il y a un boulanger dans ta ville qui n&#x27;a jamais entendu parler des 7P. Son pain est bon (Produit). Son prix est juste (Prix). Il est là tous les matins (Place). Ses clients parlent de lui (Promotion). Ses employés connaissent les habitués (People). Son processus est fiable (Process). Sa boutique sent le pain (Physical evidence).</p>
+<p>Miracle ? Non. Bon sens.</p>
+<p>Les P ne lui ont pas appris à faire ça. L&#x27;expérience, l&#x27;écoute, et l&#x27;intuition construite dans le temps l&#x27;ont fait. Les P sont la formalisation de ce qui existe déjà dans la pratique d&#x27;un professionnel attentif.</p>
+<p>Ce qui est utile dans cette formalisation : la checklist. Ce qui est dangereux : croire que la checklist remplace l&#x27;attention.</p>
+<p>L&#x27;attention ne s&#x27;apprend pas dans un framework.</p></section>
+<section class="section-block" id="just-do-it-les-origines"><h2>&quot;Just Do It&quot; — les origines</h2><ol>
+<li>Utah. Gary Gilmore est condamné à mort pour double meurtre. Devant le peloton d&#x27;exécution, on lui demande ses derniers mots. Il répond : <em>&quot;Let&#x27;s do it.&quot;</em></li>
+</ol>
+<ol>
+<li>Dan Wieden, fondateur de l&#x27;agence Wieden+Kennedy, brief ses équipes pour une campagne Nike. Il cherche quelque chose qui unifie des sportifs aussi différents que Michael Jordan, John McEnroe et Joan Benoit. Quelque chose d&#x27;universel. Il se souvient de Gary Gilmore. Il change deux mots.</li>
+</ol>
+<p><em>&quot;Just do it.&quot;</em></p>
+<p>Aucun P. Aucune grille. Aucun atelier de <em>brand positioning</em>. Une phrase qui capture quelque chose d&#x27;humain : l&#x27;action face au doute, l&#x27;exécution face à l&#x27;hésitation. La campagne la plus influente de l&#x27;histoire du sport.</p>
+<p>La théorie marketing n&#x27;aurait pas produit ça. Un consultant ne l&#x27;aurait pas facturé. C&#x27;est sorti d&#x27;une intuition, d&#x27;une mémoire, d&#x27;un risque.</p>
+<p>Voilà le paradoxe : le marketing le plus puissant est souvent celui qui échappe au marketing.</p></section>
+<section class="section-block" id="le-cadre-une-carte-pas-un-gps"><h2>Le cadre : une carte, pas un GPS</h2><p>La différence entre une carte et un GPS : le GPS dit quoi faire. La carte montre le terrain.</p>
+<p>Le GPS est pratique quand le territoire est connu et stable. Il devient dangereux quand la route change et qu&#x27;il ne l&#x27;a pas encore enregistré. Ce qui arrive très souvent en marketing.</p>
+<p>La carte oblige à penser. Elle donne le contexte. Elle ne donne pas la direction.</p>
+<p>Les P sont une carte. Ils donnent le contexte de ta situation commerciale. Ils t&#x27;aident à ne pas oublier une dimension évidente. Mais ils ne savent pas :</p>
+<ul>
+<li>pourquoi un client te choisit plutôt que ton concurrent qui coche les mêmes cases</li>
+<li>ce qui se passe dans la tête d&#x27;un acheteur entre la considération et l&#x27;acte</li>
+<li>pourquoi une marque à la proposition de valeur moins claire en bat une autre qui a tout bien fait</li>
+</ul>
+<p>Pour ça, il n&#x27;y a pas de P.</p></section>
+<section class="section-block" id="prends-le-puis-va-au-del"><h2>Prends-le. Puis va au-delà.</h2><p>Apprends les 4P. Ou les 7P. Ou les 10P. Peu importe lesquels : comprends ce qu&#x27;ils formalisent, d&#x27;où ils viennent, pourquoi certains secteurs en ont besoin de plus que d&#x27;autres.</p>
+<p>Puis utilise-les comme checklist, pas comme boussole.</p>
+<p>Une checklist dit : &quot;as-tu pensé à ça ?&quot; Une boussole dit : &quot;va dans cette direction.&quot; Le marketing-mix est une checklist utile. Il ne t&#x27;indique pas le nord.</p>
+<p>Ce qui t&#x27;indique le nord : ce que tes clients te disent entre les lignes. Ce que tu observes sur le terrain que les concurrents n&#x27;ont pas vu. Les décisions que tu prends parce que tu crois en quelque chose — et que les chiffres ne valident pas encore.</p>
+<p>Les cadres formalisent l&#x27;expérience passée. L&#x27;action s&#x27;engage dans un futur que le cadre n&#x27;a pas encore cartographié.</p>
+<p>Just do it. Mais avec l&#x27;intention que les P ne peuvent pas te donner.</p></section>
+<section class="resources" id="sources">
+<h2>Sources de référence</h2>
+<ul>
+<li>E. Jerome McCarthy, <em>Basic Marketing: A Managerial Approach</em>, Richard D. Irwin, 1960</li>
+<li>Bernard Booms et Mary Bitner, <em>Marketing Strategies and Organization Structures for Service Firms</em>, 1981</li>
+<li>Seth Godin, <em>Purple Cow</em>, Portfolio/Penguin, 2003</li>
+<li>Seth Godin, <em>Permission Marketing</em>, Simon &amp; Schuster, 1999</li>
+<li>Dan Wieden — <a href="https://www.wk.com/news/dan-wieden-1945-2022/" target="_blank" rel="noopener">https://www.wk.com/news/dan-wieden-1945-2022/</a></li>
+<li>Joan Jett — l&#x27;histoire de <em>Let&#x27;s do it</em> a été relatée dans plusieurs ouvrages sur Gary Gilmore, notamment Norman Mailer, <em>The Executioner&#x27;s Song</em>, 1979</li>
+</ul>
+</section>
+<footer>
+<span>© João Silva — <a href="index.html">Angles Morts</a></span>
+<span><a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener">Substack</a></span>
+</footer>
+</div></main></div>
+
+<script>
+const links = document.querySelectorAll('a.cl[href^="#"]');
+const targets = [...links].map(a=>document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      links.forEach(l=>l.classList.remove('active'));
+      const a=document.querySelector('a.cl[href="#'+e.target.id+'"]');
+      if(a)a.classList.add('active');
+    }
+  });
+},{threshold:.15,rootMargin:'-52px 0px -60% 0px'});
+targets.forEach(t=>io.observe(t));
+</script>
+
+</body>
+</html>

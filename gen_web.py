@@ -9,8 +9,10 @@ from pathlib import Path
 from html import escape
 
 SRC = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/LinkedIn/SEMAINE/Construire-une-marque-qui-tient/TOUT/construire-une-marque-qui-tient-COMPLET.md"
+SRC_4P    = Path(__file__).parent / "4p-COMPLET.md"
 OUT_HUB   = Path(__file__).parent / "index.html"
 OUT_GUIDE = Path(__file__).parent / "marque.html"
+OUT_4P    = Path(__file__).parent / "4p.html"
 
 BORDEAUX = "#8B1A1A"
 GRAY = "#6B6B6B"
@@ -417,12 +419,12 @@ def build_hub() -> str:
             'label': 'Disponible',
         },
         {
-            'meta': 'Article · À venir',
-            'title': 'Du modèle 4P aux 10P : pourquoi les confondre coûte cher',
-            'desc': 'McCarthy, Booms &amp; Bitner, Godin. Trois moments, trois extensions différentes du marketing mix. Ce qu\'on y mélange dit beaucoup sur ce qu\'on ne comprend pas encore.',
-            'url': None,
-            'status': 'soon',
-            'label': 'Bientôt',
+            'meta': 'Article · Essai',
+            'title': 'Du 4P au 10P : un cadre ne donne pas de sens',
+            'desc': 'McCarthy, Booms &amp; Bitner, Godin. Soixante ans d\'additions. Et si le problème n\'était pas le nombre de P, mais ce qu\'un cadre ne peut pas faire à ta place ?',
+            'url': '4p.html',
+            'status': 'live',
+            'label': 'Disponible',
         },
     ]
 
@@ -851,6 +853,163 @@ def build_guide(data: dict) -> str:
     return '\n'.join(parts)
 
 # ─────────────────────────────────────────────────────────────────────────────
+# 4P ARTICLE
+# ─────────────────────────────────────────────────────────────────────────────
+
+def slugify(t: str) -> str:
+    return re.sub(r'[^a-z0-9]+', '-', t.lower().strip()).strip('-')
+
+def build_4p(src: Path) -> str:
+    raw = src.read_text(encoding='utf-8')
+    lines = raw.splitlines()
+
+    title = ''; author = ''; opening_quote = ''
+    sections: list[dict] = []  # {id, title, lines}
+    cur_lines: list[str] = []
+    cur_title = ''; cur_id = ''
+    in_resources = False
+
+    for line in lines:
+        if line.startswith('# ') and not title:
+            title = line[2:].strip(); continue
+        if line.startswith('*') and not author:
+            author = line.strip('*').strip(); continue
+        if line.startswith('> ') and not opening_quote and not sections:
+            opening_quote = line[2:].strip(); continue
+        if line.startswith('## '):
+            if cur_title:
+                sections.append({'id': cur_id, 'title': cur_title, 'lines': cur_lines, 'resources': in_resources})
+            cur_title = line[3:].strip()
+            cur_id = slugify(cur_title)
+            in_resources = any(k in cur_title for k in ('Sources', 'Ressources', 'Références'))
+            cur_lines = []
+        else:
+            if cur_title: cur_lines.append(line)
+
+    if cur_title:
+        sections.append({'id': cur_id, 'title': cur_title, 'lines': cur_lines, 'resources': in_resources})
+
+    def render_section_body(slines: list[str]) -> str:
+        out: list[str] = []
+        buf: list[str] = []
+        in_ul = in_ol = False
+
+        def flush():
+            nonlocal in_ul, in_ol
+            if in_ul: out.append('</ul>'); in_ul = False
+            if in_ol: out.append('</ol>'); in_ol = False
+            if buf:
+                out.append(f'<p>{inline_md(" ".join(buf))}</p>')
+                buf.clear()
+
+        for line in slines:
+            s = line.strip()
+            if not s:
+                flush(); continue
+            if s.startswith('> '):
+                flush()
+                out.append(f'<blockquote class="pull">{inline_md(s[2:])}</blockquote>')
+                continue
+            if s.startswith(('- ', '* ')):
+                if buf: flush()
+                if not in_ul: out.append('<ul>'); in_ul = True
+                out.append(f'<li>{inline_md(s[2:])}</li>')
+                continue
+            m = re.match(r'^\d+\.\s+(.*)', s)
+            if m:
+                if buf: flush()
+                if not in_ol: out.append('<ol>'); in_ol = True
+                out.append(f'<li>{inline_md(m.group(1))}</li>')
+                continue
+            if s in ('---', '***'):
+                flush(); continue
+            if in_ul or in_ol: flush()
+            buf.append(s)
+        flush()
+        return '\n'.join(out)
+
+    # sidebar
+    content_sections = [s for s in sections if not s['resources']]
+    resource_sections = [s for s in sections if s['resources']]
+
+    sb = ['<nav id="sidebar">']
+    sb.append('<div class="sidebar-section">Article</div>')
+    for s in content_sections:
+        sb.append(f'<a href="#{s["id"]}" class="cl"><span>{s["title"]}</span></a>')
+    if resource_sections:
+        sb.append('<a href="#sources" class="sidebar-intro">Sources</a>')
+    sb.append('</nav>')
+
+    # body
+    parts = [f"""<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>{escape(title)} — João Silva</title>
+{FONTS}
+<style>{GUIDE_CSS}
+.opening-quote{{
+  font-family:'Cormorant Garamond',serif;
+  font-size:22px;font-style:italic;line-height:1.55;
+  color:var(--bx);border-left:3px solid var(--bx);
+  padding:12px 24px;margin:40px 0 56px;
+}}
+.section-block{{margin-bottom:72px}}
+.section-block h2{{
+  font-family:'Playfair Display',serif;
+  font-size:32px;font-weight:700;line-height:1.2;
+  color:var(--ink);margin:0 0 28px;
+  padding-bottom:16px;border-bottom:1px solid var(--rule);
+}}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <a href="index.html" class="topbar-home">Angles Morts</a>
+  <span class="topbar-title">{escape(title)}</span>
+</div>
+
+<div class="layout">
+{''.join(sb)}
+<main>
+<div class="content">
+"""]
+
+    # hero
+    parts.append(f"""<div class="guide-hero">
+  <a href="index.html" class="back-label">Angles Morts</a>
+  <h1 class="guide-title">{escape(title)}</h1>
+  <p class="guide-meta">{escape(author)}</p>
+</div>""")
+
+    if opening_quote:
+        parts.append(f'<div class="opening-quote">{inline_md(opening_quote)}</div>')
+
+    for s in content_sections:
+        body = render_section_body(s['lines'])
+        parts.append(f'<section class="section-block" id="{s["id"]}"><h2>{escape(s["title"])}</h2>{body}</section>')
+
+    if resource_sections:
+        parts.append('<section class="resources" id="sources">')
+        for s in resource_sections:
+            parts.append(f'<h2>{escape(s["title"])}</h2>')
+            parts.append(render_section_body(s['lines']))
+        parts.append('</section>')
+
+    parts.append(f"""<footer>
+<span>© João Silva — <a href="index.html">Angles Morts</a></span>
+<span><a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener">Substack</a></span>
+</footer>
+</div></main></div>
+{GUIDE_JS}
+</body>
+</html>""")
+
+    return '\n'.join(parts)
+
+# ─────────────────────────────────────────────────────────────────────────────
 # MAIN
 # ─────────────────────────────────────────────────────────────────────────────
 
@@ -868,3 +1027,7 @@ if __name__ == '__main__':
     guide = build_guide(data)
     OUT_GUIDE.write_text(guide, encoding='utf-8')
     print(f"✓ {OUT_GUIDE}  ({len(guide):,} chars, {len(data['chapters'])} chapitres)")
+
+    article_4p = build_4p(SRC_4P)
+    OUT_4P.write_text(article_4p, encoding='utf-8')
+    print(f"✓ {OUT_4P}  ({len(article_4p):,} chars)")
