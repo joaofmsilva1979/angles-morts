@@ -141,7 +141,7 @@ def render_body(raw: str) -> str:
             if buf: flush_buf()
             if not in_ol: out.append('<ol>'); in_ol=True
             out.append(f'<li>{md(m.group(1))}</li>'); continue
-        if s in('---','***'): flush_buf(); continue
+        if s in('---','***'): flush_buf(); out.append('<div class="section-ornament">◆ ◆ ◆</div>'); continue
         if in_ul or in_ol: flush_buf()
         buf.append(s)
     flush_buf()
@@ -308,93 +308,116 @@ a{color:inherit;text-decoration:none}
   color:var(--ink);margin-bottom:8mm;
 }
 
-/* ── CHAPTER OPENER ── */
+/* ── CHAPTER OPENER (page entière dédiée) ── */
 .chapter{page-break-before:always}
-
+.ch-opener{
+  page-break-before:always;
+  page-break-after:always;
+  min-height:162mm;
+  display:flex;flex-direction:column;
+  justify-content:flex-end;
+  padding-bottom:12mm;
+  position:relative;
+}
 .ch-ghost-num{
+  position:absolute;
+  top:-8mm;right:-4mm;
   font-family:'Playfair Display',serif;
-  font-size:96pt;font-weight:700;
-  color:rgba(139,26,26,.06);
-  line-height:1;
-  letter-spacing:-.04em;
-  margin-bottom:-8mm;
-  margin-left:-2mm;
+  font-size:160pt;font-weight:700;
+  color:rgba(139,26,26,.05);
+  line-height:1;letter-spacing:-.04em;
 }
 .ch-label{
   font-family:'Inter',sans-serif;
-  font-size:7.5pt;font-weight:600;
-  letter-spacing:.14em;text-transform:uppercase;
-  color:var(--bx);margin-bottom:3mm;
+  font-size:7pt;font-weight:600;
+  letter-spacing:.18em;text-transform:uppercase;
+  color:var(--bx);margin-bottom:5mm;
 }
 .ch-title{
   font-family:'Playfair Display',serif;
-  font-size:22pt;font-weight:700;
-  line-height:1.15;color:var(--ink);
-  letter-spacing:-.01em;margin-bottom:6mm;
+  font-size:26pt;font-weight:700;
+  line-height:1.1;color:var(--ink);
+  letter-spacing:-.02em;margin-bottom:7mm;
 }
 .ch-tagline{
-  border-left:1.5pt solid var(--bx);
-  padding:2pt 0 2pt 5mm;
   font-family:'Cormorant Garamond',serif;
-  font-size:12pt;font-style:italic;color:var(--gray);
-  line-height:1.55;margin-bottom:8mm;
-}
-.ch-rule{
-  border:none;border-top:0.5pt solid var(--rule);
-  margin-bottom:6mm;
+  font-size:12.5pt;font-style:italic;color:var(--gray);
+  line-height:1.6;
+  padding-top:5mm;
+  border-top:0.5pt solid var(--rule);
 }
 
 /* ── BODY ── */
 .ch-body p{
-  margin-bottom:4mm;
+  margin-bottom:0;
+  margin-top:0;
   text-align:justify;
   hyphens:auto;
+  line-height:1.85;
 }
+.ch-body p+p{text-indent:5mm}
 .ch-body p:first-child::first-letter{
   font-family:'Playfair Display',serif;
-  font-size:36pt;font-weight:700;
-  float:left;line-height:.8;
-  margin:3pt 3pt -3pt 0;
+  font-size:42pt;font-weight:700;
+  float:left;line-height:.78;
+  margin:4pt 4pt -4pt 0;
   color:var(--bx);
 }
 .ch-body h3{
   font-family:'Playfair Display',serif;
-  font-size:12.5pt;font-weight:600;
+  font-size:12.5pt;font-weight:700;
   color:var(--ink);
-  margin-top:7mm;margin-bottom:3mm;
-  line-height:1.3;
+  margin-top:9mm;margin-bottom:3mm;
+  line-height:1.25;
+  padding-bottom:1.5mm;
+  border-bottom:0.5pt solid var(--rule);
 }
 .ch-body strong{font-weight:600}
 .ch-body em{font-style:italic}
 .ch-body ul,.ch-body ol{
-  padding-left:6mm;margin-bottom:4mm;
+  padding-left:6mm;margin:3mm 0 3mm;
 }
-.ch-body li{margin-bottom:1.5mm;text-align:left}
+.ch-body li{
+  margin-bottom:1.5mm;text-align:left;
+  line-height:1.65;
+}
 .pull{
-  border-left:1.5pt solid var(--bx);
-  padding:2pt 0 2pt 5mm;
-  font-style:italic;font-size:11pt;
-  color:var(--gray);margin:5mm 0;
-  line-height:1.5;
+  margin:9mm 0;
+  padding:5mm 0;
+  border-top:1pt solid var(--bx);
+  border-bottom:1pt solid var(--bx);
+  text-align:center;
+  font-family:'Cormorant Garamond',serif;
+  font-size:13pt;font-style:italic;
+  color:var(--ink);line-height:1.55;
+}
+.section-ornament{
+  text-align:center;
+  color:var(--bx);
+  font-size:9pt;
+  margin:7mm 0;
+  letter-spacing:.4em;
 }
 
 /* ── 4 QUESTIONS ── */
 .qbox{
   background:#F7F4F1;
-  border-top:2pt solid var(--bx);
-  padding:5mm 6mm;margin-top:8mm;
+  border-left:3pt solid var(--bx);
+  padding:5mm 6mm 5mm 7mm;
+  margin-top:9mm;
   page-break-inside:avoid;
 }
 .qbox-label{
   font-family:'Inter',sans-serif;
-  font-size:7.5pt;font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;
-  color:var(--bx);margin-bottom:3mm;
+  font-size:7pt;font-weight:600;
+  letter-spacing:.12em;text-transform:uppercase;
+  color:var(--bx);margin-bottom:3.5mm;
 }
 .qbox ol{padding-left:5mm;margin:0}
 .qbox li{
-  font-size:10.5pt;margin-bottom:2mm;
-  line-height:1.55;text-align:left;
+  font-size:10.5pt;margin-bottom:2.5mm;
+  line-height:1.6;text-align:left;
+  color:#222;
 }
 
 /* ── CONCLUSION ── */
@@ -512,20 +535,21 @@ def build_html(data: dict) -> str:
     # ── CHAPTERS ──
     for ch in data['chapters']:
         num_str = f"{ch['num']:02d}"
-        parts.append(f'<div class="chapter" id="ch{ch["num"]}">')
+        # Opener page — full page dedicated to chapter
+        parts.append(f'<div class="ch-opener" id="ch{ch["num"]}">')
         parts.append(f'<div class="ch-ghost-num">{num_str}</div>')
         parts.append(f'<div class="ch-label">Chapitre {ch["num"]}</div>')
         parts.append(f'<h2 class="ch-title">{md(ch["title"])}</h2>')
         if ch['tagline']:
             parts.append(f'<blockquote class="ch-tagline">{md(ch["tagline"])}</blockquote>')
-        parts.append('<hr class="ch-rule">')
+        parts.append('</div>')
+        # Body — continues on next page
         parts.append('<div class="ch-body">')
         for block in ch['body_parts']:
             parts.append(render_body(block))
         parts.append('</div>')
         if ch['questions_raw']:
             parts.append(render_questions(ch['questions_raw']))
-        parts.append('</div>')
 
     # ── CONCLUSION ──
     if data['conclusion']:
@@ -586,13 +610,20 @@ def to_pdf(html_path: Path, pdf_path: Path):
             print_background=True,
             margin={'top':'22mm','bottom':'24mm','left':'20mm','right':'16mm'},
             display_header_footer=True,
-            header_template='<div></div>',
+            header_template="""
+              <div style="width:100%;font-size:6.5pt;color:#bbb;
+                font-family:Georgia,serif;letter-spacing:.06em;
+                display:flex;justify-content:space-between;
+                padding:0 20mm;margin-bottom:3mm;">
+                <span>João Silva</span>
+                <span style="font-style:italic">Construire une marque qui tient</span>
+              </div>""",
             footer_template="""
               <div style="width:100%;font-size:7pt;color:#999;
                 font-family:'Cormorant Garamond',Georgia,serif;
                 display:flex;justify-content:space-between;
                 padding:0 20mm 0 20mm;margin-top:2mm;">
-                <span>João Silva — Angles Morts</span>
+                <span>Angles Morts</span>
                 <span class="pageNumber"></span>
               </div>""",
         )
