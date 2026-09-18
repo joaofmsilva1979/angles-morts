@@ -511,7 +511,8 @@ def build_hub() -> str:
       <p class="about-text">J'écris depuis l'intérieur d'une organisation ; pas depuis un cabinet conseil.<br><br>La question n'est pas <em>comment tu communiques</em>. Elle est <em>qui décide, qui fait vivre, qui répond quand ça craque.</em></p>
       <div class="about-links">
         <a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener" class="about-link">Substack</a>
-        <a href="https://www.linkedin.com/in/jo%C3%A3o-silva-b3b86232/" target="_blank" rel="noopener" class="about-link">LinkedIn</a>
+        <a href="https://www.linkedin.com/in/joaosilva-commarketeer/" target="_blank" rel="noopener" class="about-link">LinkedIn</a>
+        <a href="https://github.com/joaofmsilva1979" target="_blank" rel="noopener" class="about-link">GitHub</a>
       </div>
     </div>
     <div>
@@ -527,7 +528,8 @@ def build_hub() -> str:
     <span class="footer-brand">Angles Morts — João Silva</span>
     <div class="footer-links">
       <a href="https://joaosilva1979.substack.com" target="_blank" rel="noopener" class="footer-link">Substack</a>
-      <a href="https://www.linkedin.com/in/jo%C3%A3o-silva-b3b86232/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="https://www.linkedin.com/in/joaosilva-commarketeer/" target="_blank" rel="noopener" class="footer-link">LinkedIn</a>
+      <a href="https://github.com/joaofmsilva1979" target="_blank" rel="noopener" class="footer-link">GitHub</a>
     </div>
   </div>
 </footer>
