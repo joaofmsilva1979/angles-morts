@@ -423,9 +423,9 @@ def build_hub() -> str:
             'meta': 'Article · Essai',
             'title': 'Du 4P au 10P : un cadre ne donne pas de sens',
             'desc': 'McCarthy, Booms &amp; Bitner, Godin. Soixante ans d\'additions. Et si le problème n\'était pas le nombre de P, mais ce qu\'un cadre ne peut pas faire à ta place ?',
-            'url': 'mix-marketing.html',
-            'status': 'live',
-            'label': 'Disponible',
+            'url': '',
+            'status': 'soon',
+            'label': 'En cours',
         },
     ]
 
