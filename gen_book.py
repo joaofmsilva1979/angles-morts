@@ -7,9 +7,10 @@ import re, sys
 from pathlib import Path
 from html import escape
 
-MD  = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/LinkedIn/SEMAINE/Construire-une-marque-qui-tient/TOUT/construire-une-marque-qui-tient-COMPLET.md"
+ROOT     = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/angles-morts-web"
+MD       = ROOT / "marque-COMPLET.md"
 OUT_HTML = Path(__file__).parent / "book.html"
-OUT_PDF  = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/LinkedIn/SEMAINE/Construire-une-marque-qui-tient/TOUT/construire-une-marque-qui-tient-v2.pdf"
+OUT_PDF  = ROOT / "construire-une-marque-qui-tient-v2.pdf"
 
 BX = "#8B1A1A"
 
