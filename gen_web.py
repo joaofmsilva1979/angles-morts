@@ -865,25 +865,30 @@ def build_4p(src: Path) -> str:
     lines = raw.splitlines()
 
     title = ''; author = ''; opening_quote = ''
+    intro_lines: list[str] = []
     sections: list[dict] = []  # {id, title, lines}
     cur_lines: list[str] = []
     cur_title = ''; cur_id = ''
     in_resources = False
+    in_intro = False  # between opening_quote and first ##
 
     for line in lines:
         if line.startswith('# ') and not title:
             title = line[2:].strip(); continue
-        if line.startswith('*') and not author:
+        if line.startswith('*') and not author and not sections:
             author = line.strip('*').strip(); continue
         if line.startswith('> ') and not opening_quote and not sections:
-            opening_quote = line[2:].strip(); continue
+            opening_quote = line[2:].strip(); in_intro = True; continue
         if line.startswith('## '):
+            in_intro = False
             if cur_title:
                 sections.append({'id': cur_id, 'title': cur_title, 'lines': cur_lines, 'resources': in_resources})
             cur_title = line[3:].strip()
             cur_id = slugify(cur_title)
             in_resources = any(k in cur_title for k in ('Sources', 'Ressources', 'Références'))
             cur_lines = []
+        elif in_intro:
+            intro_lines.append(line)
         else:
             if cur_title: cur_lines.append(line)
 
@@ -950,6 +955,12 @@ def build_4p(src: Path) -> str:
 <title>{escape(title)} — João Silva</title>
 {FONTS}
 <style>{GUIDE_CSS}
+.article-intro{{
+  margin-bottom:64px;
+  font-size:18px;line-height:1.82;color:#333;
+}}
+.article-intro p{{margin-bottom:20px}}
+.article-intro p:last-child{{margin-bottom:0}}
 .opening-quote{{
   font-family:'Cormorant Garamond',serif;
   font-size:22px;font-style:italic;line-height:1.55;
@@ -998,6 +1009,10 @@ def build_4p(src: Path) -> str:
 
     if opening_quote:
         parts.append(f'<div class="opening-quote">{inline_md(opening_quote)}</div>')
+
+    if intro_lines:
+        intro_html = render_section_body(intro_lines)
+        parts.append(f'<div class="article-intro">{intro_html}</div>')
 
     for s in content_sections:
         body = render_section_body(s['lines'])
