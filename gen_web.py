@@ -10,7 +10,7 @@ from html import escape
 
 ROOT = Path.home() / "Library/CloudStorage/GoogleDrive-davisthe8th@gmail.com/My Drive/JOAO/ANGLES_MORTS/angles-morts-web"
 SRC       = ROOT / "marque-COMPLET.md"
-SRC_4P    = ROOT / "4p-COMPLET.md"
+SRC_4P    = ROOT / "marketing-communication-COMPLET.md"
 OUT_HUB   = Path(__file__).parent / "index.html"
 OUT_GUIDE = Path(__file__).parent / "marque.html"
 OUT_4P    = Path(__file__).parent / "mix-marketing.html"
